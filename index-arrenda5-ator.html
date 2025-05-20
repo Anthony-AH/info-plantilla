@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recibo de Arrendamiento</title>
+  <style>
+    :root {
+      --primary-color: #3a7bd5;
+      --secondary-color: #00d2ff;
+      --dark-color: #2c3e50;
+      --light-color: #f9f9f9;
+      --accent-color: #00c483;
+      --text-color: #333333;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ee 100%);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* Header con redes sociales */
+    header {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+    
+    .brand img {
+      width: 32px;
+      margin-right: 10px;
+    }
+    
+    .brand h2 {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .social-icons i {
+      font-size: 22px;
+      cursor: pointer;
+      color: white;
+      transition: var(--transition);
+    }
+    
+    .social-icons i:hover {
+      transform: translateY(-3px) scale(1.1);
+    }
+    
+    /* Hover con colores específicos */
+    .fa-whatsapp:hover {
+      color: #25D366;
+      text-shadow: 0 0 10px rgba(37, 211, 102, 0.6);
+    }
+    
+    .fa-facebook:hover {
+      color: #1877F2;
+      text-shadow: 0 0 10px rgba(24, 119, 242, 0.6);
+    }
+    
+    .fa-instagram:hover {
+      color: #E4405F;
+      text-shadow: 0 0 10px rgba(228, 64, 95, 0.6);
+    }
+    
+    .fa-envelope:hover {
+      color: #D44638;
+      text-shadow: 0 0 10px rgba(212, 70, 56, 0.6);
+    }
+    
+    .fa-telegram:hover {
+      color: #0088cc;
+      text-shadow: 0 0 10px rgba(0, 136, 204, 0.6);
+    }
+    
+    .fa-linkedin:hover {
+      color: #0A66C2;
+      text-shadow: 0 0 10px rgba(10, 102, 194, 0.6);
+    }
+
+    /* Contenido principal */
+    .main-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    .title-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .title-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+    
+    .title-section p {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Menú de navegación */
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .menu-tabs button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background: white;
+      border: none;
+      border-radius: 50px;
+      color: var(--primary-color);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .menu-tabs button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: var(--transition);
+    }
+    
+    .menu-tabs button:hover::before {
+      left: 100%;
+    }
+    
+    .menu-tabs button:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      box-shadow: 0 7px 15px rgba(58, 123, 213, 0.4);
+    }
+    
+    .menu-tabs button.active {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+    }
+
+    /* Panel de contenido */
+    .content-panel {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      min-height: 250px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .content-panel h2 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+    
+    .content-panel p, .content-panel ul {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    .content-panel ul {
+      padding-left: 20px;
+      margin-top: 15px;
+    }
+    
+    .content-panel li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    .content-panel li::before {
+      content: "✓";
+      color: var(--accent-color);
+      position: absolute;
+      left: -20px;
+      font-weight: bold;
+    }
+    
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      padding: 25px 0;
+      text-align: center;
+      color: white;
+      margin-top: 60px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .footer-content img {
+      width: 22px;
+      vertical-align: middle;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .menu-tabs button {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+      
+      .content-panel {
+        padding: 25px;
+      }
+      
+      .title-section h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+
+  <!-- Carga de iconos de Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xh6a7zYUGLEtKtvFrBQrM8c3+CBKCl1h8bcG7zNCE9aMdjv+L1f7f0yP+9gW5XfUV68N1CgrqWckAykrSQQqRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Carga de fuente Poppins -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+
+</head>
+<body>
+
+  <!-- Header con redes sociales -->
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <img src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" alt="Excel Icon" />
+        <h2>Recibos de Arrendamiento</h2>
+      </div>
+      <div class="social-icons">
+        <i class="fab fa-whatsapp" title="WhatsApp" onclick="abrirRed('whatsapp')"></i>
+        <i class="fab fa-facebook" title="Facebook" onclick="abrirRed('facebook')"></i>
+        <i class="fab fa-instagram" title="Instagram" onclick="abrirRed('instagram')"></i>
+        <i class="fas fa-envelope" title="Correo" onclick="abrirRed('correo')"></i>
+        <i class="fab fa-telegram" title="Telegram" onclick="abrirRed('telegram')"></i>
+        <i class="fab fa-linkedin" title="LinkedIn" onclick="abrirRed('linkedin')"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <div class="main-container">
+    <div class="title-section">
+      <h1>Recibo de Arrendamiento en Excel y PDF</h1>
+      <p>Una solución profesional para gestionar tus documentos de arrendamiento de manera eficiente</p>
+    </div>
+
+    <div class="menu-tabs">
+      <button id="btn-descripcion" onclick="mostrarContenido('descripcion')">Descripción</button>
+      <button id="btn-caracteristicas" onclick="mostrarContenido('caracteristicas')">Características</button>
+      <button id="btn-uso" onclick="mostrarContenido('uso')">¿Cómo usar?</button>
+      <button id="btn-beneficios" onclick="mostrarContenido('beneficios')">Beneficios</button>
+    </div>
+
+    <div class="content-panel" id="panelContenido">
+      <!-- El contenido se cargará dinámicamente -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <img src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" alt="Excel Icon" />
+      <span>© 2025 Anthony - Todos los derechos reservados</span>
+    </div>
+  </footer>
+
+  <script>
+    // Función para mostrar contenido según la sección seleccionada
+    function mostrarContenido(seccion) {
+      // Quitar clase activa de todos los botones
+      document.querySelectorAll('.menu-tabs button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Agregar clase activa al botón correspondiente
+      document.getElementById('btn-' + seccion).classList.add('active');
+      
+      let contenido = '';
+      let panel = document.getElementById('panelContenido');
+
+      // Añadir clase para efecto de desvanecimiento
+      panel.style.opacity = 0;
+
+      setTimeout(() => {
+        switch (seccion) {
+          case 'descripcion':
+            contenido = `
+              <h2>Descripción de la Plantilla</h2>
+              <p>Nuestra plantilla de recibo de arrendamiento es una solución completa y profesional diseñada para propietarios, administradores de propiedades y agentes inmobiliarios que necesitan generar documentación precisa y de aspecto profesional.</p>
+              <p>Desarrollada con las mejores prácticas en Excel, esta plantilla es completamente editable y permite exportación instantánea a formato PDF para compartir fácilmente con inquilinos y mantener registros digitales organizados.</p>
+            `;
+            break;
+          case 'caracteristicas':
+            contenido = `
+              <h2>Características Principales</h2>
+              <ul>
+                <li>Completamente editable y personalizable</li>
+                <li>Cálculos automáticos de impuestos e importes</li>
+                <li>Diseño profesional y moderno</li>
+                <li>Exportación con un clic a formato PDF</li>
+                <li>Campos predefinidos para todos los datos relevantes</li>
+                <li>Numeración automática de recibos</li>
+                <li>Compatible con todas las versiones de Excel desde 2010</li>
+                <li>Fácil de usar incluso para principiantes</li>
+              </ul>
+            `;
+            break;
+          case 'uso':
+            contenido = `
+              <h2>¿Cómo Usar la Plantilla?</h2>
+              <p>Utilizar nuestra plantilla de recibo de arrendamiento es muy sencillo:</p>
+              <ul>
+                <li>Descarga la plantilla y ábrela en Microsoft Excel</li>
+                <li>Completa los campos con la información del propietario e inquilino</li>
+                <li>Ingresa los detalles del pago, periodo de arrendamiento y concepto</li>
+                <li>Verifica que todos los cálculos sean correctos</li>
+                <li>Guarda una copia en Excel para tus registros</li>
+                <li>Exporta a PDF para enviar al inquilino o imprimir</li>
+              </ul>
+            `;
+            break;
+          case 'beneficios':
+            contenido = `
+              <h2>Beneficios de Nuestra Plantilla</h2>
+              <p>Al utilizar nuestra plantilla de recibo de arrendamiento, obtendrás:</p>
+              <ul>
+                <li>Ahorro significativo de tiempo en la generación de documentos</li>
+                <li>Reducción de errores en cálculos y datos</li>
+                <li>Imagen profesional ante tus inquilinos</li>
+                <li>Mayor organización en tu gestión de arrendamientos</li>
+                <li>Facilidad para mantener registros financieros precisos</li>
+                <li>Cumplimiento con los requisitos legales para recibos</li>
+                <li>Proceso de cobro más eficiente y transparente</li>
+              </ul>
+            `;
+            break;
+        }
+
+        panel.innerHTML = contenido;
+        panel.style.opacity = 1;
+        panel.classList.add('fade-in');
+      }, 200);
+    }
+
+    // Función para abrir enlaces de redes sociales
+    function abrirRed(red) {
+      let url = '';
+
+      switch (red) {
+        case 'whatsapp':
+          url = 'https://wa.me/51900632032';
+          break;
+        case 'facebook':
+          url = 'https://facebook.com/tuusuario';
+          break;
+        case 'instagram':
+          url = 'https://instagram.com/tuusuario';
+          break;
+        case 'correo':
+          url = 'mailto:anthony@ejemplo.com';
+          break;
+        case 'telegram':
+          url = 'https://t.me/tuusuario';
+          break;
+        case 'linkedin':
+          url = 'https://linkedin.com/in/tuusuario';
+          break;
+      }
+
+      window.open(url, '_blank');
+    }
+    
+    // Mostrar la descripción por defecto al cargar la página
+    window.onload = function() {
+      mostrarContenido('descripcion');
+    };
+  </script>
+
+</body>
+</html>
